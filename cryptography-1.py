@@ -130,7 +130,7 @@ if __name__ == "__main__":
         if x == 3:
             decryption_key = get_key()
             message = get_message()
-            print('encrypted message: ', end='')
+            print('decrypted message: ', end='')
             print(encrypt(message, alphabet, decryption_key*(-1)) + "\n")
             continue
 
@@ -141,6 +141,6 @@ if __name__ == "__main__":
             new_alpha = permutate(text_key, alphabet)
             print(f'new alphabet: {new_alpha}')
             message = get_message()
-            print('encrypted message: ', end='')
+            print('decrypted message: ', end='')
             print(encrypt(message, new_alpha, integer_key*(-1)) + "\n")
             continue
