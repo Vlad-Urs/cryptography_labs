@@ -1,3 +1,5 @@
+import random
+
 def print_menu():
     print('encrypt: 1')
     print('decrypt: 2')
@@ -8,6 +10,23 @@ def validate_key(key):
     if len(key) < 7 or not key.isalpha():
         return False
     return True
+
+def prepare_text(text):
+
+    while True:
+        for i in range(0, len(text) - 1, 2):
+            char1 = text[i]
+            char2 = text[i + 1]
+
+            if char1 == char2:
+                text = text[:i] + random.choice(['X', 'Q', 'Z']) + text[i:]
+                break
+        break
+
+    if len(text) % 2 != 0:
+        text += 'V'
+
+    return text
 
 def build_playfair_matrix(key):
     alphabet = "ABCDEFGHIKLMNOPQRSTUVWXYZȘȚĂÂÎ"
@@ -41,8 +60,6 @@ def find_position(matrix, char):
                 return i, j
 
 def playfair(plaintext, matrix, operation):
-    if len(plaintext) % 2 != 0:
-        plaintext += 'V'
         
     text = ""
 
@@ -84,6 +101,7 @@ if __name__ == "__main__":
             plaintext = input('Enter the plaintext (letters only): ')
             plaintext = plaintext.replace(' ', '').upper()
             plaintext = plaintext.replace('J', 'I')
+            plaintext = prepare_text(plaintext)
             if not plaintext.isalpha():
                 print('enter a valid text')
                 continue
@@ -107,7 +125,8 @@ if __name__ == "__main__":
                 print('enter a valid text')
                 continue
             plaintext = playfair(ciphertext, matrix, -1)
-            print('Decrypted message:', plaintext)
+            print('Decrypted message: ' + plaintext)
+            
         elif choice == '3':
             break
         else:
