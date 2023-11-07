@@ -52,8 +52,7 @@ right = pt[32:64]
 # At this point, you have L0 and R0. You can now proceed to expand R0 and permute it to get L1.
 
 # Expand R0
-expanded_right = permute(right, expansion_perm, 32)
 
 # Now, you have expanded_right, which can be used as L1.
 
-print("L1: " + expanded_right)
+print("L1: " +  right)
